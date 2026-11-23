@@ -1,5 +1,13 @@
 """Models for the intentionally imperfect order-management application."""
 from dataclasses import dataclass
+from decimal import Decimal, ROUND_HALF_UP
+
+CENT = Decimal('0.01')
+
+
+def to_money(value) -> Decimal:
+    """Round a number to cents as a Decimal."""
+    return Decimal(str(value)).quantize(CENT, rounding=ROUND_HALF_UP)
 
 
 @dataclass
